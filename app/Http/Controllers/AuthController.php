@@ -21,8 +21,7 @@ class AuthController extends Controller
             if($user[0]->isAdmin()){
                 return inertia('Dashboard-admin')->with('user', compact($user));
             }else{
-                return response('Pagina do cliente');
-                //return inertia('Login');
+                return inertia('Cardapio');
             }
 
         }

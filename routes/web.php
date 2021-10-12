@@ -22,11 +22,15 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     /* Por enquanto esta verificando apenas o admin */
-    if (Auth::check()) {
+    if (Auth::check() && Auth::user()->type_user === 1) {
         return inertia('Dashboard-admin');
+    } elseif (Auth::check() && Auth::user()->type_user === 0) {
+        return inertia('Cardapio');
+    } else {
+        return \inertia('Login');
     }
-    return inertia('Login');
-});
+})->name('/');
+
 /* Rotas de login e logout*/
 
 Route::post('/', [AuthController::class, 'login'])->name('login.user');
@@ -41,10 +45,5 @@ Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], functio
     Route::get('/gerenciar-acai', [AdminController::class, 'acaiView'])->name('gerenciar.sorvetes');
 
     Route::resource('/produtos', ProdutoController::class);
-
-
-
-
-
     Route::resource('users', UserController::class);
 });

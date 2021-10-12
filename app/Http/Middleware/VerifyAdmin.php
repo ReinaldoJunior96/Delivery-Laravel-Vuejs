@@ -21,7 +21,7 @@ class VerifyAdmin
         {
             // if user is not admin take him to his dashboard
             if ( Auth::user()->isUser() ) {
-                return redirect(route('home.view'));
+                return inertia('Login');
             }
 
             // allow admin to proceed with request
