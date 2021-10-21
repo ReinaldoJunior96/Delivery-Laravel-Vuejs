@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CardapioController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,20 @@ Route::get('/', function () {
 Route::post('/', [AuthController::class, 'login'])->name('login.user');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
 
+Route::get('/sorvetes', [CardapioController::class, 'cardapioSorvetes'])->name('sorvetes.cardapio');
+Route::get('/acais', [CardapioController::class, 'cardapioAcais'])->name('acais.cardapio');
+Route::get('/lanches', [CardapioController::class, 'cardapioLanches'])->name('lanches.cardapio');
+
+Route::get('/checkout/{produto}', [CardapioController::class, 'checkoutProduto'])->name('checkout.produto');
+
+
+
+
+
+
+
+
+
 
 Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard-admin', function () {
@@ -43,6 +58,7 @@ Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], functio
     })->name('dashboard.admin');
     Route::get('/gerenciar-sorvete', [AdminController::class, 'sorvetesView'])->name('gerenciar.sorvetes');
     Route::get('/gerenciar-acai', [AdminController::class, 'acaiView'])->name('gerenciar.sorvetes');
+    Route::get('/gerenciar-lanche', [AdminController::class, 'lancheView'])->name('gerenciar.lanches');
 
     Route::resource('/produtos', ProdutoController::class);
     Route::resource('users', UserController::class);

@@ -26,9 +26,9 @@ class AdminController extends Controller
     /* Lanches categoria 3*/
     public function lancheView()
     {
-        $sorvetes = Produto::where(['produto_categoria'=>3])->get();
-        return inertia('Gerenciar-Lanche',
-            ['sorvetes' => $sorvetes]
-        );
+        $lanches = Produto::where(['produto_categoria'=>3])->get();
+        return inertia('Gerenciar-Lanche',[
+            'lanche'=>$lanches
+        ]);
     }
 }

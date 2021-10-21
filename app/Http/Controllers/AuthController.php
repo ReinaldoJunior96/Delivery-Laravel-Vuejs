@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +19,12 @@ class AuthController extends Controller
         ];
         if (Auth::attempt($credentials)) {
             $user = User::where('email', Auth::user()->email)->get();
-            if($user[0]->isAdmin()){
+            if ($user[0]->isAdmin()) {
                 return inertia('Dashboard-admin')->with('user', compact($user));
-            }else{
-                return inertia('Cardapio');
+            } else {
+                return inertia('Cardapio',[
+                    'sorvetes'=>'reinaldo'
+                ]);
             }
 
         }

@@ -22,8 +22,10 @@
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Preço</label>
-                                <input v-model="acaiForm.preco" type="text" class="form-control"
-                                       placeholder="Enter ...">
+                                <InputMoeda :precoPropos='acaiForm.preco' v-model.lazy="acaiForm.preco"
+                                            :options="{ currency: 'BRL' }"
+                                            type="text" class="form-control"
+                                            placeholder="Enter ..."/>
                             </div>
                         </div>
                     </div>
@@ -52,17 +54,18 @@ import Navegacao from "../componentes-admin/Navegacao";
 import TabelaProdutos from '../componentes-admin/TabelaProdutos'
 import {Inertia} from "@inertiajs/inertia";
 import {Link} from '@inertiajs/inertia-vue3';
+import InputMoeda from '../componentes-admin/InputMoeda'
 
 export default {
     name: "Gerenciar-Acai",
-    components: {Navegacao, Link, TabelaProdutos},
+    components: {Navegacao, Link, TabelaProdutos, InputMoeda},
     props: ['acai'],
     data() {
         return {
             acaiForm: {
                 _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 nome: '',
-                preco: '',
+                preco: 0,
                 disponibilidade: 0,
                 categoria: 2,
                 descricao: ''
@@ -72,8 +75,9 @@ export default {
     methods: {
         postAcai: function () {
             Inertia.post('/admin/produtos', this.acaiForm);
+            console.log(this.acai)
             this.acaiForm.nome = '';
-            this.acaiForm.preco = '';
+            this.acaiForm.preco = 0;
             this.acaiForm.descricao = '';
         },
 

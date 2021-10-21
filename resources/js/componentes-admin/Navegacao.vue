@@ -81,12 +81,12 @@
                         </Link>
                     </li>
                     <li class="nav-item">
-                        <a href="../kanban.html" class="nav-link">
+                        <Link href="/admin/gerenciar-lanche" class="nav-link">
                             <img class="nav-icon" :src="path+'/fast-food.png'" alt="">
                             <p>
                                 Gerenciar Lanches
                             </p>
-                        </a>
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <a href="../kanban.html" class="nav-link">

@@ -22,7 +22,7 @@
                     <td>{{ produto.produto_nome }}</td>
                     <td>
                             <span class="badge bg-danger">
-                                {{ produto.produto_preco }}
+                                {{ Number(produto.produto_preco).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }}
                             </span>
                     </td>
                     <td>

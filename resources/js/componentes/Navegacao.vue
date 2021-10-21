@@ -68,7 +68,7 @@
                         <Link href="/admin/gerenciar-sorvete" class="nav-link">
                             <img class="nav-icon" :src="path+'/icecreams.png'" alt="">
                             <p>
-                                Gerenciar Sorvetes
+                                Cardápio
                             </p>
                         </Link>
                     </li>
@@ -76,25 +76,9 @@
                         <Link href="/admin/gerenciar-acai" class="nav-link">
                             <img class="nav-icon" :src="path+'/acai.png'" alt="">
                             <p>
-                                Gerenciar Açaí
+                                Meus Pedidos
                             </p>
                         </Link>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../kanban.html" class="nav-link">
-                            <img class="nav-icon" :src="path+'/fast-food.png'" alt="">
-                            <p>
-                                Gerenciar Lanches
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../kanban.html" class="nav-link">
-                            <img class="nav-icon" :src="path+'/delivery-man.png'" alt="">
-                            <p>
-                                Pedidos Delivery
-                            </p>
-                        </a>
                     </li>
                     <li class="nav-item">
                         <a @click="logout" class="nav-link">

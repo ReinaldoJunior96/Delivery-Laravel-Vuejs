@@ -21,7 +21,10 @@
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Preço</label>
-                                <input v-model="sorvete.preco" type="text" class="form-control" placeholder="Enter ...">
+                                <InputMoeda :precoPropos='sorvete.preco' v-model.lazy="sorvete.preco"
+                                            :options="{ currency: 'BRL' }"
+                                            type="text" class="form-control"
+                                            placeholder="Enter ..."/>
                             </div>
                         </div>
                     </div>
@@ -40,6 +43,7 @@
             </div>
             <!-- /.card-body -->
         </div>
+
         <TabelaProdutos :produtos='sorvetes'/>
     </div>
 
@@ -50,17 +54,18 @@ import Navegacao from "../componentes-admin/Navegacao";
 import TabelaProdutos from '../componentes-admin/TabelaProdutos'
 import {Inertia} from "@inertiajs/inertia";
 import {Link} from '@inertiajs/inertia-vue3';
+import InputMoeda from '../componentes-admin/InputMoeda'
 
 export default {
     name: "Gerenciar-Sorvete",
-    components: {Navegacao , Link, TabelaProdutos},
+    components: {Navegacao , Link, TabelaProdutos, InputMoeda},
     props: ['sorvetes'],
     data() {
         return {
             sorvete: {
                 _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 nome: '',
-                preco: '',
+                preco: 0,
                 disponibilidade: 0,
                 categoria: 1,
                 descricao: ''
@@ -72,7 +77,7 @@ export default {
         postSorvete: function () {
             Inertia.post('/admin/produtos', this.sorvete);
             this.sorvete.nome = '';
-            this.sorvete.preco = '';
+            this.sorvete.preco = 0;
             this.sorvete.descricao = '';
         },
 
