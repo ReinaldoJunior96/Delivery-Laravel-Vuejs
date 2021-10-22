@@ -33,7 +33,7 @@
                                     alt="Product Image" class="img-size-50">
                             </div>
                             <div class="product-info">
-                                <Link :href="'/checkout/'+sorvete.id" class="product-title">{{ sorvete.produto_nome }}
+                                <Link :href="'/checkout/'+sorvete.slug" class="product-title">{{ sorvete.produto_nome }}
                                     <span class="badge badge-warning float-right">{{
                                             Number(sorvete.produto_preco).toLocaleString('pt-br', {
                                                 style: 'currency',

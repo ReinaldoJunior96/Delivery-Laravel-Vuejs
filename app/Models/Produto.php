@@ -9,6 +9,12 @@ class Produto extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'produto_nome','produto_preco','produto_categoria','produto_disponibilidade','produto_descricao'
+        'produto_nome','produto_preco','slug','produto_categoria','produto_disponibilidade','produto_descricao'
     ];
+
+
+    public function carrinhos()
+    {
+        return $this->hasMany(Carrinho::class, 'produto_carrinho', 'id');
+    }
 }

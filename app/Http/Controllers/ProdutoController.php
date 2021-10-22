@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProdutoController extends Controller
 {
@@ -28,6 +29,7 @@ class ProdutoController extends Controller
     {
         Produto::create([
             'produto_nome' => $request->nome,
+            'slug' => Str::slug($request->nome) ,
             'produto_preco' => $request->preco,
             'produto_categoria' => $request->categoria,
             'produto_disponibilidade' => $request->disponibilidade,

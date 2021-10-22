@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CardapioController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -41,9 +42,11 @@ Route::get('/sorvetes', [CardapioController::class, 'cardapioSorvetes'])->name('
 Route::get('/acais', [CardapioController::class, 'cardapioAcais'])->name('acais.cardapio');
 Route::get('/lanches', [CardapioController::class, 'cardapioLanches'])->name('lanches.cardapio');
 
-Route::get('/checkout/{produto}', [CardapioController::class, 'checkoutProduto'])->name('checkout.produto');
+Route::get('/checkout/{slug}', [CardapioController::class, 'checkoutProduto'])->name('checkout.produto');
 
-
+Route::post('/adicionar-ao-carrinho', [CardapioController::class, 'adicionarProdAoCarrinho'])->name('add.to.cart');
+Route::get('/meu-carrinho', [CarrinhoController::class,'verCarrinho'])->name('meu.carrinho');
+Route::delete('/remover-prod-carrinho/{produto}', [CarrinhoController::class,'removerProduto']);
 
 
 
