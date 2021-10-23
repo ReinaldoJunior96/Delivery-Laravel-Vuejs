@@ -49,15 +49,5 @@ class CardapioController extends Controller
         }
     }
 
-    public function adicionarProdAoCarrinho(Request $request)
-    {
-        Carrinho::create([
-            'usuario_carrinho' => $request->usuario,
-            'produto_carrinho' => $request->produto,
-            'complemento_produto_carrinho' => $request->complemento,
-            'valor_un_total' => $request->precoCheckout
-        ]);
 
-        return redirect()->route('meu.carrinho');
-    }
 }

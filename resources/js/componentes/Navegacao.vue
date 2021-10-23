@@ -17,7 +17,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="badge badge-warning navbar-badge">3</span>
+                    <span class="badge badge-warning navbar-badge">2 </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span class="dropdown-item dropdown-header">15 Notifications</span>

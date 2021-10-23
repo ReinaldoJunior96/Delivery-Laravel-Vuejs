@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CardapioController;
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -44,9 +45,19 @@ Route::get('/lanches', [CardapioController::class, 'cardapioLanches'])->name('la
 
 Route::get('/checkout/{slug}', [CardapioController::class, 'checkoutProduto'])->name('checkout.produto');
 
-Route::post('/adicionar-ao-carrinho', [CardapioController::class, 'adicionarProdAoCarrinho'])->name('add.to.cart');
-Route::get('/meu-carrinho', [CarrinhoController::class,'verCarrinho'])->name('meu.carrinho');
+Route::post('/adicionar-ao-carrinho', [CarrinhoController::class, 'adicionarProdAoCarrinho'])->name('add.to.cart');
+Route::get('/meu-carrinho/{usuario}', [CarrinhoController::class,'verCarrinho'])->name('meu.carrinho');
+
+
+
 Route::delete('/remover-prod-carrinho/{produto}', [CarrinhoController::class,'removerProduto']);
+
+
+
+Route::get('/produtos/meu-carrinho/{usuario}', [CarrinhoController::class,'produtoMeuCarrinho']);
+
+Route::post('/realizar-pedido', [PedidoController::class, 'cadastrarPedido'])->name('realizar.pedido');
+
 
 
 
@@ -62,6 +73,8 @@ Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], functio
     Route::get('/gerenciar-sorvete', [AdminController::class, 'sorvetesView'])->name('gerenciar.sorvetes');
     Route::get('/gerenciar-acai', [AdminController::class, 'acaiView'])->name('gerenciar.sorvetes');
     Route::get('/gerenciar-lanche', [AdminController::class, 'lancheView'])->name('gerenciar.lanches');
+    Route::get('/gerenciar-pedidos', [AdminController::class, 'pedidosView'])->name('gerenciar.lanches');
+    Route::get('/detalhes-pedido/{pedido}', [AdminController::class, 'detalhesPedido'])->name('detalhes.pedido');
 
     Route::resource('/produtos', ProdutoController::class);
     Route::resource('users', UserController::class);

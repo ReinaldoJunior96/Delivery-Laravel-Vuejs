@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,20 @@ class AdminController extends Controller
         $lanches = Produto::where(['produto_categoria'=>3])->get();
         return inertia('Gerenciar-Lanche',[
             'lanche'=>$lanches
+        ]);
+    }
+    /* Lanches categoria 3*/
+    public function pedidosView()
+    {
+        return inertia('Gerenciar-Pedidos',[
+            'pedidos' => Pedido::with('usuario')->orderBy('id','asc')->get()
+        ]);
+    }
+
+    public function detalhesPedido($id)
+    {
+        return inertia('Detalhes-Pedido',[
+            'pedido' => Pedido::with('usuario')->get()
         ]);
     }
 }

@@ -47,7 +47,6 @@
         <div class="d-flex justify-content-center mt-3">
             <img :src="path+'/ice-cream-cone.png'" width="100"
                  class="brand-image img-circle elevation-3" style="opacity: .8">
-
         </div>
 
 
@@ -89,12 +88,12 @@
                         </Link>
                     </li>
                     <li class="nav-item">
-                        <a href="../kanban.html" class="nav-link">
+                        <Link href="/admin/gerenciar-pedidos" class="nav-link">
                             <img class="nav-icon" :src="path+'/delivery-man.png'" alt="">
                             <p>
                                 Pedidos Delivery
                             </p>
-                        </a>
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <a @click="logout" class="nav-link">
