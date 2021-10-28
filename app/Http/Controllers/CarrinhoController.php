@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class CarrinhoController extends Controller
 {
@@ -11,7 +13,7 @@ class CarrinhoController extends Controller
     {
         return inertia('Carrinho', [
             'ProdutosInCarrinho' => Carrinho::with('produto', 'usuario')
-                ->where('usuario_carrinho', $usuario)
+                ->where(['usuario_carrinho'=> $usuario])
                 ->get()
         ]);
     }
@@ -24,7 +26,8 @@ class CarrinhoController extends Controller
             'complemento_produto_carrinho' => $request->complemento,
             'valor_un_total' => $request->precoCheckout
         ]);
-        return response('Success',200);
+
+        return redirect()->route('meu.carrinho', Auth::user()->id);
     }
 
     public function removerProduto($produto)
@@ -37,7 +40,7 @@ class CarrinhoController extends Controller
     public function produtoMeuCarrinho($usuario)
     {
         return response(Carrinho::with('produto', 'usuario')
-            ->where('usuario_carrinho', $usuario)
+            ->where(['usuario_carrinho'=> $usuario, 'status'=>0])
             ->get()
         );
 

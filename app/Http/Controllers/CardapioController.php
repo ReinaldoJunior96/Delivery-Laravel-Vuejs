@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Carrinho;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CardapioController extends Controller
 {
+
+    public function cardapioView()
+    {
+        return Inertia::render('Cardapio');
+    }
+
+
     public function cardapioSorvetes()
     {
         return Produto::where([

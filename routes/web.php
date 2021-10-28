@@ -39,6 +39,8 @@ Route::get('/', function () {
 Route::post('/', [AuthController::class, 'login'])->name('login.user');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
 
+Route::get('/cardapio',[CardapioController::class, 'cardapioView'])->name('view.cardapio');
+
 Route::get('/sorvetes', [CardapioController::class, 'cardapioSorvetes'])->name('sorvetes.cardapio');
 Route::get('/acais', [CardapioController::class, 'cardapioAcais'])->name('acais.cardapio');
 Route::get('/lanches', [CardapioController::class, 'cardapioLanches'])->name('lanches.cardapio');
@@ -46,7 +48,11 @@ Route::get('/lanches', [CardapioController::class, 'cardapioLanches'])->name('la
 Route::get('/checkout/{slug}', [CardapioController::class, 'checkoutProduto'])->name('checkout.produto');
 
 Route::post('/adicionar-ao-carrinho', [CarrinhoController::class, 'adicionarProdAoCarrinho'])->name('add.to.cart');
+
 Route::get('/meu-carrinho/{usuario}', [CarrinhoController::class,'verCarrinho'])->name('meu.carrinho');
+
+
+Route::get('/meus-pedidos/{usuario}', [PedidoController::class,'meusPedidos'])->name('meus.pedidos');
 
 
 
@@ -66,6 +72,7 @@ Route::post('/realizar-pedido', [PedidoController::class, 'cadastrarPedido'])->n
 
 
 
+
 Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard-admin', function () {
         return Inertia::render('Dashboard-admin');
@@ -74,6 +81,7 @@ Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], functio
     Route::get('/gerenciar-acai', [AdminController::class, 'acaiView'])->name('gerenciar.sorvetes');
     Route::get('/gerenciar-lanche', [AdminController::class, 'lancheView'])->name('gerenciar.lanches');
     Route::get('/gerenciar-pedidos', [AdminController::class, 'pedidosView'])->name('gerenciar.lanches');
+    Route::get('/pedidos-novos', [AdminController::class, 'itemsPedido']);
     Route::get('/detalhes-pedido/{pedido}', [AdminController::class, 'detalhesPedido'])->name('detalhes.pedido');
 
     Route::resource('/produtos', ProdutoController::class);

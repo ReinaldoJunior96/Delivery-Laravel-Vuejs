@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap);
+:root {
+  --cor-primaria: #FF398B;
+  --cor-secundaria: #9C003C;
+  --cor-opcional: #FF6BAE;
+  --cor-alternativa: #12F4EB;
+}
+
+.roboto-condensed {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.mont-serrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+.fredericka {
+  font-family: "Fredericka the Great", cursive;
+}

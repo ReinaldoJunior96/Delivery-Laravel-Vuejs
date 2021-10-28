@@ -15,6 +15,7 @@ class CreateCarrinhoTabela extends Migration
     {
         Schema::create('carrinhos', function (Blueprint $table) {
             $table->id();
+            $table->integer('numero_carrinho')->nullable();
             $table->unsignedBigInteger('usuario_carrinho');
             $table->unsignedBigInteger('produto_carrinho');
             $table->text('complemento_produto_carrinho')->nullable();

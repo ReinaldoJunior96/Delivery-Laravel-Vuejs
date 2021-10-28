@@ -40,10 +40,23 @@ class AdminController extends Controller
         ]);
     }
 
-    public function detalhesPedido($id)
+    /* retorna a lista de pedidos 3*/
+    public function itemsPedido()
+    {
+        return response(Pedido::with('usuario')->orderBy('id','asc')->get());
+    }
+
+
+
+
+
+
+    public function detalhesPedido($numeroPedido)
     {
         return inertia('Detalhes-Pedido',[
-            'pedido' => Pedido::with('usuario')->get()
+            'pedidoSolicitado' => Pedido::where([
+                'numero_pedido' => $numeroPedido
+            ])->with('usuario')->first()
         ]);
     }
 }

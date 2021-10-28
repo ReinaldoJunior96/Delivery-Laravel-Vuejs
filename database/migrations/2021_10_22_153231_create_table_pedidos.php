@@ -16,10 +16,12 @@ class CreateTablePedidos extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('usuario_pedido');
+            $table->integer('numero_pedido');
             $table->text('produtos_pedido');
-            $table->string('troco_pedido');
+            $table->string('troco_pedido')->nullable();
             $table->text('informacoes_entrega');
             $table->decimal('valor_total',10,2);
+            $table->integer('status_pedido');
             $table->timestamps();
 
             $table->foreign('usuario_pedido')->references('id')->on('users')->onDelete('cascade');

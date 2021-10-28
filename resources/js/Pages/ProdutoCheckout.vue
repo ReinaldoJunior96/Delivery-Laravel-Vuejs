@@ -1,72 +1,69 @@
 <template>
+    <Nav :pagina="'Check in'"/>
     <div class="d-flex flex-column vh-100">
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Confirme seu pedido</h1>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- Main content -->
-            <section class="content">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Confirme seu pedido</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <ul class="products-list product-list-in-card pl-2 pr-2">
-                            <li class="item">
-                                <div class="product-info">
-                                    <a href="javascript:void(0)" class="product-title">
-                                        {{ produto.produto_nome }}
-                                        <span class="badge badge-warning float-right">
+        <!-- Main content -->
+        <section class="content mt-3 ">
+            <div class="card p-2">
+                <div class="card-header">
+                    <h3 class="card-title text-white mont-serrat"><i class="fas fa-receipt"></i> Confirme seu pedido
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <ul class="products-list product-list-in-card pl-2 pr-2">
+                        <li class="item">
+                            <span href="javascript:void(0)" class="product-title mont-serrat">
+                                {{ produto.produto_nome }}
+                                <span class="badge badge-success float-right">
                                             {{
-                                                Number(pedidoCarrinho.precoCheckout).toLocaleString('pt-br',
-                                                    {
-                                                        style: 'currency',
-                                                        currency: 'BRL'
-                                                    })
-                                            }}
+                                        Number(pedidoCarrinho.precoCheckout).toLocaleString('pt-br',
+                                            {
+                                                style: 'currency',
+                                                currency: 'BRL'
+                                            })
+                                    }}
                                     </span>
-                                    </a>
-                                    <span class="product-description">
+                            </span>
+                            <span class="product-description roboto-condensed">
                                     Descrição do sorvete se tiver alguma
                                 </span>
-                                </div>
-                            </li>
+                        </li>
 
-                        </ul>
-                        <div class="btn-group d-flex align-content-end">
-                            <button type="button" class="btn btn-default" @click="adicionarQtdeProduto"><i
-                                class="fas fa-plus"></i></button>
-                            <button type="button" class="btn btn-default" disabled>Quantidade: <span>{{
-                                    pedidoCarrinho.qtdeProduto
-                                }}</span></button>
-                            <button type="button" class="btn btn-default" @click="removerQtdeProduto">-</button>
-                        </div>
+                    </ul>
+                    <div class="btn-group d-flex align-content-end">
+                        <button type="button" class="btn btn-default botao-quantidade" @click="removerQtdeProduto">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-default" disabled>
+                            Quantidade: <span>{{ pedidoCarrinho.qtdeProduto }}</span>
+                        </button>
+
+                        <button type="button" class="btn btn-default botao-quantidade" @click="adicionarQtdeProduto">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
                     </div>
                 </div>
-                <button @click="adicionarProdutoAoCarrinho" type="button"
-                        class="btn btn-block btn-success btn-flat mt-3 produtoAdicionadoAoCarrinho">
-                    Adicionar ao carrinho
-                </button>
-            </section>
-        </div>
-        <Footer :pageActive="'cardapio'"/>
+            </div>
+            <button @click="adicionarProdutoAoCarrinho" type="button"
+                    class="button-to-card btn-flat mt-3 produtoAdicionadoAoCarrinho">
+                Adicionar ao carrinho
+            </button>
+        </section>
+
     </div>
+    <Footer :pageActive="'cardapio'"/>
+
 
 </template>
 
 <script>
-import Navegacao from "../componentes/Navegacao";
+import Nav from "../componentes/Navegacao";
 import Footer from "../componentes/Footer";
 import {usePage} from "@inertiajs/inertia-vue3";
 import axios from "axios";
+import {Inertia} from "@inertiajs/inertia";
 
 export default {
     name: "ProdutoCheckout",
@@ -84,13 +81,13 @@ export default {
         }
     },
     components: {
-        Navegacao,
-        Footer
+        Nav,
+        Footer,
+
     },
     methods: {
         adicionarProdutoAoCarrinho: function () {
-            axios.post('/adicionar-ao-carrinho', this.pedidoCarrinho)
-                .then(response => console.log(response.data))
+            Inertia.post('/adicionar-ao-carrinho', this.pedidoCarrinho)
         },
         adicionarQtdeProduto: function () {
             this.pedidoCarrinho.qtdeProduto++
@@ -111,5 +108,29 @@ export default {
 </script>
 
 <style scoped>
+.card-header {
+    background-color: var(--cor-primaria);
+}
 
+.product-title {
+    color: #733f19;
+}
+
+.botao-quantidade {
+    border-radius: 20px;
+    background-color: rgba(94, 94, 94, 0.68);
+    color: #FFFFFF;
+}
+
+.button-to-card {
+    padding: 10px 40px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    width: 100%;
+    display: block;
+    background-color: #05b44d !important;
+    color: #FFFFFF;
+    border: 0;
+}
 </style>
