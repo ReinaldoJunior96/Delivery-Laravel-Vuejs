@@ -23,7 +23,7 @@ class PedidoController extends Controller
             $carrinhoEncontrado->save();
 
             $produtoPedido .=
-                'Item número: ' . $countPedido . ':
+                'Item número ' . $countPedido . ':
                 ' . $produto['produto']['produto_nome'] . ' // ';
             $countPedido++;
         }

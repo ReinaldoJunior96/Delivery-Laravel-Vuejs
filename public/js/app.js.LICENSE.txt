@@ -1,5 +1,17 @@
+/*!
+ * Pusher JavaScript Library v7.0.3
+ * https://pusher.com/
+ *
+ * Copyright 2020, Pusher
+ * Released under the MIT licence.
+ */
+
 /**
  * Vue Currency Input 2.1.1
  * (c) 2018-2021 Matthias Stiller
  * @license MIT
  */
+
+//! moment.js
+
+//! moment.js locale configuration

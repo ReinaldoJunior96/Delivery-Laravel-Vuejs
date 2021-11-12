@@ -24,10 +24,7 @@ class AuthController extends Controller
                 return inertia('Dashboard-admin')->with('user', compact($user));
             } else {
                 return \redirect()->route('view.cardapio');
-                //return Inertia::render('Cardapio');
-                //return inertia('Cardapio');
             }
-
         }
         return redirect()->back()->withInput()->withErrors(['Usuário ou senha inválida!']);
     }

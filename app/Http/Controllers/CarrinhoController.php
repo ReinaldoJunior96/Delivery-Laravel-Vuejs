@@ -40,7 +40,7 @@ class CarrinhoController extends Controller
     public function produtoMeuCarrinho($usuario)
     {
         return response(Carrinho::with('produto', 'usuario')
-            ->where(['usuario_carrinho'=> $usuario, 'status'=>0])
+            ->where(['usuario_carrinho'=> $usuario])
             ->get()
         );
 
