@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
+use Symfony\Component\Finder\Gitignore;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     /* Por enquanto esta verificando apenas o admin */
@@ -37,9 +39,19 @@ Route::get('/', function () {
 /* Rotas de login e logout*/
 
 Route::post('/', [AuthController::class, 'login'])->name('login.user');
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
 
+
+
+
+
 Route::get('/cardapio',[CardapioController::class, 'cardapioView'])->name('view.cardapio');
+
+
+
+
+
 
 Route::get('/sorvetes', [CardapioController::class, 'cardapioSorvetes'])->name('sorvetes.cardapio');
 Route::get('/acais', [CardapioController::class, 'cardapioAcais'])->name('acais.cardapio');

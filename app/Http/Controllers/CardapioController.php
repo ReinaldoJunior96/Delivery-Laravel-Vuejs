@@ -26,12 +26,14 @@ class CardapioController extends Controller
 
     public function cardapioAcais()
     {
+
         return Produto::where('produto_categoria', 2)->get();
     }
 
     public function cardapioLanches()
     {
         return Produto::where('produto_categoria', 3)->get();
+        /* user::all() */
     }
 
     public function checkoutProduto($slug)

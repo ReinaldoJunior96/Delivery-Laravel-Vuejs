@@ -20,4 +20,5 @@ class Carrinho extends Model
     {
         return $this->hasOne(User::class, 'id', 'usuario_carrinho');
     }
+    
 }
